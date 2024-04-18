@@ -19,7 +19,9 @@ export default function ProductDetails({product}:ProductDetailProps) {
 {isAvailable ? 'Disponible':'No Disponible'}
     </td>
     <td className="p-3 text-lg text-gray-800 ">
-       
+       <div>
+       <button className="flex gap-2 items-center">Editar</button>
+       </div>
     </td>
 </tr> 
   )
