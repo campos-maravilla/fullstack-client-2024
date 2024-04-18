@@ -20,7 +20,7 @@ export const router=createBrowserRouter([
                 action:newProductAction
             },
             {
-                path:'products/:id/editar',//ROA Pattern - Resource-oriented design 
+                path:'productos/:id/editar',//ROA Pattern - Resource-oriented design 
                 element:<EditProduct/>
             }
         ]
