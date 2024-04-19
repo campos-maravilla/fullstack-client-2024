@@ -1,6 +1,6 @@
 import { Link,Form, useActionData, ActionFunctionArgs,redirect, LoaderFunctionArgs,useLoaderData } from "react-router-dom";
 import ErrorMessage from "../componentes/ErrorMessage";
-import { addProduct, getProductById } from "../services/ProductService";
+import {  getProductById, updateProduct } from "../services/ProductService";
 import { Product } from "../types";
 
 export async function loader({params}:LoaderFunctionArgs){
@@ -15,7 +15,7 @@ export async function loader({params}:LoaderFunctionArgs){
   }
 }
 
-export async function action({request}:ActionFunctionArgs){
+export async function action({request,params}:ActionFunctionArgs){
  // console.log('desde action...')
   //console.log(await request.formData())
   const data=Object.fromEntries(await request.formData())
@@ -28,9 +28,11 @@ export async function action({request}:ActionFunctionArgs){
     return error
   }
   
- await addProduct(data)
-  
-  return redirect('/')
+  if(params.id !==undefined){
+    await updateProduct(data,+params.id)
+     
+     return redirect('/')
+  }
 }
 
 export default function EditProduct() {
