@@ -13,7 +13,7 @@ export async function loader(){
 
 export default function Products() {
   const products=useLoaderData() as Product[]
-  console.log(products)
+ // console.log(products)
     
   return (
     <>
