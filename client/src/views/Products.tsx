@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, Link, useLoaderData } from "react-router-dom"
-import { getProducts } from "../services/ProductService"
+import { getProducts, updateProductAvailability } from "../services/ProductService"
 import ProductDetails from "../componentes/ProductDetails"
 import { Product } from "../types"
 
@@ -12,7 +12,7 @@ export async function loader(){
 //para disponible y no disponible 
 export async function action({request}:ActionFunctionArgs){
   const data=Object.fromEntries(await request.formData())
-  console.log(data)
+  await updateProductAvailability(+data.id)
   return {}
 }
 
