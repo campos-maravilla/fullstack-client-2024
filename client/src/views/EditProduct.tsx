@@ -3,6 +3,8 @@ import ErrorMessage from "../componentes/ErrorMessage";
 import {  getProductById, updateProduct } from "../services/ProductService";
 import { Product } from "../types";
 
+
+
 export async function loader({params}:LoaderFunctionArgs){
   //console.log(params.id)
   if(params.id !== undefined){
@@ -34,6 +36,11 @@ export async function action({request,params}:ActionFunctionArgs){
      return redirect('/')
   }
 }
+
+const availabilityOptions = [
+  { name: 'Disponible', value: true},
+  { name: 'No Disponible', value: false}
+]
 
 export default function EditProduct() {
   const product=useLoaderData() as Product
@@ -85,6 +92,23 @@ export default function EditProduct() {
             name="price"
            defaultValue= {product.price}
         />
+    </div>
+    
+    <div className="mb-4">
+        <label
+            className="text-gray-800"
+            htmlFor="availability"
+        >Disponibilidad:</label>
+        <select 
+            id="availability"
+            className="mt-2 block w-full p-3 bg-gray-50"
+            name="availability"
+            defaultValue={product?.availability.toString()}
+        >
+            {availabilityOptions.map(option => (
+              <option key={option.name} value={option.value.toString()}>{option.name}</option>
+            ))}
+        </select>
     </div>
     <input
       type="submit"
