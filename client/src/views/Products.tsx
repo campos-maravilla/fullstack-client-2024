@@ -6,9 +6,13 @@ import { Product } from "../types"
 export async function loader(){
   
  const products= await getProducts()
-
  return products
+}
 
+//para disponible y no disponible 
+export async function action(){
+  console.log('desde action de actualizar')
+  return {}
 }
 
 export default function Products() {
