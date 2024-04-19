@@ -1,4 +1,4 @@
-import { coerce, number, safeParse,parse,boolean } from "valibot";
+import { coerce, number, safeParse,parse} from "valibot";
 import { DraftProductSchema,  ProductsSchema,Product, ProductSchema } from "../types";
 import axios from "axios";
 import { toBoolean } from "../utils";
@@ -80,7 +80,8 @@ export async function updateProduct(data:ProductData,id:Product['id']){
         availability:toBoolean(data.availability.toString())
     })
     if(result.success){
-        
+        const url=`${import.meta.env.VITE_API_URL}/api/products/${id}`
+        await axios.put(url,result.output)
     }
    } catch (error) {
     console.log(error)
